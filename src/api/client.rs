@@ -61,7 +61,10 @@ impl ProwlClient {
     }
 
     pub async fn retrieve_token(&self, request: &TokenRequest) -> Result<ApiResponse> {
-        let url = format!("{BASE_URL}/retrieve/token?providerkey={}", request.providerkey);
+        let url = format!(
+            "{BASE_URL}/retrieve/token?providerkey={}",
+            request.providerkey
+        );
 
         let response = self.client.get(&url).send().await?;
         let body = response.text().await?;

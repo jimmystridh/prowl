@@ -32,13 +32,13 @@ impl SendRequest {
                 max: Self::MAX_DESCRIPTION_LEN,
             });
         }
-        if let Some(ref url) = self.url {
-            if url.len() > Self::MAX_URL_LEN {
-                return Err(crate::error::ProwlError::MessageTooLong {
-                    length: url.len(),
-                    max: Self::MAX_URL_LEN,
-                });
-            }
+        if let Some(ref url) = self.url
+            && url.len() > Self::MAX_URL_LEN
+        {
+            return Err(crate::error::ProwlError::MessageTooLong {
+                length: url.len(),
+                max: Self::MAX_URL_LEN,
+            });
         }
         if self.application.len() > Self::MAX_APPLICATION_LEN {
             return Err(crate::error::ProwlError::MessageTooLong {

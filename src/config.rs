@@ -22,9 +22,8 @@ impl Config {
             return Ok(Config::default());
         }
 
-        let contents = std::fs::read_to_string(&config_path).map_err(|e| {
-            ProwlError::Config(format!("Failed to read config file: {e}"))
-        })?;
+        let contents = std::fs::read_to_string(&config_path)
+            .map_err(|e| ProwlError::Config(format!("Failed to read config file: {e}")))?;
 
         toml::from_str(&contents)
             .map_err(|e| ProwlError::Config(format!("Failed to parse config file: {e}")))
@@ -49,7 +48,6 @@ impl Config {
             .map(|dirs| dirs.config_dir().join("config.toml"))
             .ok_or_else(|| ProwlError::Config("Could not determine config directory".to_string()))
     }
-
 }
 
 #[derive(Debug, Clone)]

@@ -51,10 +51,7 @@ impl OutputFormatter for HumanOutput {
                 "\n  {}",
                 "Save this key securely. You can add it to your config with:".dimmed()
             );
-            println!(
-                "  {}",
-                format!("prowl config set api_key {apikey}").cyan()
-            );
+            println!("  {}", format!("prowl config set api_key {apikey}").cyan());
         }
     }
 
